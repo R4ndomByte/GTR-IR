@@ -96,61 +96,16 @@
     </header>
 	<!-- ⬆️ Poster 置頂，並加上明顯的全螢幕/下載按鈕 -->
     <section class="card" style="margin-top:0">
-	  <h3>Poster</h3>
-	  <p style="margin: 6px 0 12px">
-		<a href="media/Poster.pdf" target="_blank" rel="noopener noreferrer" style="margin-right:12px">
-		  Open Fullscreen in New Tab
-		</a>
-		<a href="media/Poster.pdf" download>Download PDF</a>
-	  </p>
-
-	  <style>
-		/* ==== Poster viewer ==== */
-		.pdf-box {
-		  position: relative;
-		  width: 100%;
-		  aspect-ratio: 16 / 9;            /* 桌機：固定 16:9 */
-		  border-radius: 12px;
-		  overflow: hidden;
-		  border: 1px solid #26345f;
-		  background: #0b1020;
-		  min-height: 220px;
-		}
-		.pdf-frame {
-		  position: absolute; inset: 0;
-		  width: 100%; height: 100%;
-		  border: 0; display: block;
-		  -webkit-overflow-scrolling: touch;
-		}
-		/* 預設只顯示桌機 iframe */
-		.pdf-desktop { display: block; }
-		.pdf-mobile  { display: none;  }
-
-		/* 手機：顯示整張 → 改為 A 系列比例（約 1:1.4142），切換到 mobile 版 iframe */
-		@media (max-width: 900px) {
-		  .pdf-box { aspect-ratio: 1 / 1.4142; } /* 手機：整頁剛好塞滿 */
-		  .pdf-desktop { display: none; }
-		  .pdf-mobile  { display: block; }
-		}
-	  </style>
-
-	  <div class="pdf-box">
-		<!-- 桌機版：寬度貼齊，16:9 框中可上下滑動 -->
-		<iframe
-		  class="pdf-frame pdf-desktop"
-		  src="media/Poster.pdf#view=FitH&toolbar=0&navpanes=0&page=1"
-		  title="Poster (desktop)"
-		  loading="lazy"></iframe>
-
-		<!-- 手機版：整張自動置中顯示（page-fit / Fit 皆給，提升相容性） -->
-		<iframe
-		  class="pdf-frame pdf-mobile"
-		  src="media/Poster.pdf#zoom=page-fit&view=Fit&toolbar=0&navpanes=0&page=1"
-		  title="Poster (mobile)"
-		  loading="lazy"></iframe>
-	  </div>
-	</section>
-
+      <h3>Poster</h3>
+      <p style="margin: 6px 0 12px">
+        <a href="media/Poster.pdf" target="_blank" rel="noopener noreferrer" style="margin-right:12px">Open Fullscreen in New Tab</a>
+        <a href="mdeia/Poster.pdf" download>download PDF</a>
+      </p>
+      <div class="pdf-box">
+        <!-- 單頁 PDF：以 page-fit 顯示整頁、關閉工具列；避免拖拉 -->
+        <iframe src="media/Poster.pdf#zoom=page-fit&toolbar=0&navpanes=0&page=1" title="Conference Poster PDF" loading="lazy"></iframe>
+      </div>
+    </section>
 	
     <section class="grid">
       <!-- Left: Media / Demo -->
