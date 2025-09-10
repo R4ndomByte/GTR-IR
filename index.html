@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GTR-IR Demo</title>
+  <title>GTR-IR Project Page</title>
 
   <style>
     :root {
@@ -43,7 +43,7 @@
     .thumbs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
     @media (min-width: 520px) { .thumbs { grid-template-columns: repeat(3, 1fr); } }
 
-    /* YouTube 16:9 響應式容器 */
+
     .video-wrap { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid #26345f; background:#0b1020; }
     .video-wrap iframe { width: 100%; height: 100%; display: block; }
 
@@ -77,11 +77,10 @@
       <div>
         <h1 class="title">GTR-IR: GENERATIVE TEXT-CONDITIONED MODEL FOR GUITAR CABINET IMPULSE RESPONSE — Project Page</h1>
         <p class="subtitle">
-		  Jia Chang Yang<sup>1</sup>, Yu Ting Tsai<sup>2</sup><br>
-		  <span><sup>1</sup> CITI, Academia Sinica</span><br>
-		  <span><sup>2</sup> Master’s Program of Electro-Acoustics, Feng Chia University</span>
+		  Jia Chang Yang, Yu Ting Tsai<br>
+		  Master’s Program of Electro-Acoustics<br>
+		  Feng Chia University<br>
 		</p>
-
 
 
         <div class="badges">
@@ -92,7 +91,7 @@
         </div>
       </div>
     </header>
-	<!-- ⬆️ Poster 置頂，並加上明顯的全螢幕/下載按鈕 -->
+	<!-- ⬆Poster 置頂，並加上明顯的全螢幕/下載按鈕 -->
     <section class="card" style="margin-top:0">
       <h3>Poster</h3>
       <p style="margin: 6px 0 12px">
@@ -129,217 +128,239 @@
       <aside class="card">
 		  <h3>Abstract</h3>
 		  <p class="justify" lang="en">
-			This study presents Guitar Text-conditioned Cabinet Impulse Response (GTR-IR), a text-conditioned generation model for synthesizing impulse response (IR) of guitar speaker cabinets. 
-			Textual descriptions, including cabinet, speaker type, configuration, tone, and microphone, are encoded into feature representations using a BERT model and subsequently processed by GTR-IR model. 
-			In contrast to previous studies that downsample IR to 16&nbsp;kHz with shorter durations, our approach uses IR at 48&nbsp;kHz and 2400 samples. 
-			The model generates fixed-length IR and is capable of producing cabinet responses for both seen and unseen configurations. 
-			Evaluations show that, across sampling rates from 44.1&nbsp;kHz to 96&nbsp;kHz, the proposed model reduces mean squared error by 96.5%, error-to-signal ratio by 39%, 
-			and power spectral density error by 99.996%, while increasing magnitude-squared coherence by 8.1%, 
-			compared with the MLP baseline. In addition, when compared with eight baseline architectures including Transformer, WaveNet, and CVAE, the GTR-IR achieves a mean squared error of 1.78 &times; 10<sup>&minus;7</sup>, 
-			spectral correlation of 0.99998, and residual energy ratio of 0.664%, outperforming all alternatives. 
-			These findings validate the effectiveness of the proposed model for guitar speaker cabinet IR generation and digital audio effects.
+			This study presents Guitar Text-conditioned Cabinet Impulse Response (GTR-IR), a text-conditioned generation model for synthesizing impulse response (IR) of guitar speaker cabinets. Textual descriptions, including cabinet, speaker type, configuration, tone, and microphone, are encoded into feature representations using a BERT model and subsequently processed by GTR-IR model. In contrast to previous studies that downsample IR to 16&nbsp;kHz with shorter durations, our approach uses IR at 48&nbsp;kHz and 2400 samples. The model generates fixed-length IR and is capable of producing cabinet responses for both seen and unseen configurations. Evaluations show that, across sampling rates from 44.1&nbsp;kHz to 96&nbsp;kHz, the proposed model reduces mean squared error by 96.5%, error-to-signal ratio by 39%, and power spectral density error by 99.996%, while increasing magnitude-squared coherence by 8.1%, compared with the MLP baseline. In addition, when compared with eight baseline architectures including Transformer, WaveNet, and CVAE, the GTR-IR achieves a mean squared error of 1.78 &times; 10<sup>&minus;7</sup>, spectral correlation of 0.99998, and residual energy ratio of 0.664%, outperforming all alternatives. These findings validate the effectiveness of the proposed model for guitar speaker cabinet IR generation and digital audio effects applications.
 		  </p>
 
+		
       </aside>
     </section>
 	
+
+	<!-- ===== Convolution Demo Board (Dry + 5 pairs, L→R: OriIR | GenIR | Plot | AfterOri | AfterGen) ===== -->
 	<!-- ===== Convolution Demo Board (Dry + 5 pairs, L→R: Input | OriIR | GenIR | Plot | AfterOri | AfterGen) ===== -->
-	<!-- ===== Convolution Demo Board (Dry + 5 pairs) ===== -->
-	<!-- ===== Convolution Demo Board (Dry + 5 pairs) ===== -->
 	<section class="card" id="conv-demo" style="margin-top:16px">
-	  <h3>Listening Demo — Dry &amp; Five Pairs</h3>
+		<h3>Listening Demo — Dry &amp; Five Pairs</h3>
 
-	  <style>
-		/* ===== Desktop layout ===== */
+		<!-- 只影響本區塊的樣式 -->
+		<style>
+		/* 格子配置 */
 		#conv-demo .grid-head,
-		#conv-demo .pair-grid{
-		  display:grid;
+		#conv-demo .pair-grid {
+		  display: grid;
 		  grid-template-columns: 1.2fr 0.8fr 0.8fr 2.6fr 0.8fr 0.8fr;
-		  grid-template-areas: "spec ori gen plot aori agen";
-		  gap:10px; align-items:center; text-align:center;
+		  gap: 10px;
+		  align-items: center;
+		  text-align: center;
 		}
-		#conv-demo .cell-spec{grid-area:spec}
-		#conv-demo .cell-ori {grid-area:ori }
-		#conv-demo .cell-gen {grid-area:gen }
-		#conv-demo .cell-plot{grid-area:plot}
-		#conv-demo .cell-aori{grid-area:aori}
-		#conv-demo .cell-agen{grid-area:agen}
 
-		#conv-demo .pair-grid > div{
-		  display:flex; flex-direction:column; align-items:center; justify-content:center;
+		/* 各欄元素置中 */
+		#conv-demo .pair-grid > div {
+		  display: flex;
+		  flex-direction: column;
+		  align-items: center;
+		  justify-content: center;
 		}
-		#conv-demo audio{ width:90%; height:44px; }
-		#conv-demo img.plot{
-		  width:100%; max-width:480px; max-height:260px;
-		  object-fit:contain; border-radius:8px; border:1px solid #26345f; background:#0b1020;
+
+		/* 音檔控制列：改回正常大小 */
+		#conv-demo audio {
+		  width: 90%;
+		  height: 44px; /* 適中 */
 		}
-		#conv-demo .dry{ display:flex; flex-direction:column; align-items:center; }
-		#conv-demo .dry audio{ width:70%; height:40px; }
 
-		/* 手機時顯示的小標籤（預設隱藏，僅行動裝置顯示） */
-		#conv-demo .m-label{ display:none; }
+		/* 圖片置中 + 限高 */
+		#conv-demo img.plot {
+		  width: 100%;
+		  max-width: 480px;
+		  max-height: 260px;
+		  object-fit: contain;
+		  border-radius: 8px;
+		  border: 1px solid #26345f;
+		  background: #0b1020;
+		}
 
-		/* ===== Mobile layout ===== */
-		@media (max-width:900px){
-		  #conv-demo .grid-head{ display:none; }          /* 隱藏桌機表頭 */
-		  #conv-demo .pair-grid{
-			grid-template-columns:1fr;
-			grid-template-areas:
-			  "spec" "ori" "gen" "plot" "aori" "agen";
-			gap:12px; text-align:left;
+		/* 檔名文字也置中 */
+		#conv-demo .path {
+		  color: #8ea2c2;
+		  font-size: 12px;
+		  word-break: break-all;
+		  text-align: center;
+		  margin-top: 4px;
+		}
+
+		/* Dry 區塊置中 */
+		#conv-demo .dry-wrap {
+		  display: flex;
+		  flex-direction: column;
+		  align-items: center;
+		}
+
+		/* 窄螢幕改直排 */
+		@media (max-width: 1000px) {
+		  #conv-demo .grid-head,
+		  #conv-demo .pair-grid {
+			grid-template-columns: 1fr;
 		  }
-		  #conv-demo audio{ width:100%; height:48px; }
-		  #conv-demo img.plot{ max-width:100%; max-height:240px; }
-		  #conv-demo .dry audio{ width:100%; height:44px; }
-
-		  /* 小標籤打開並置左 */
-		  #conv-demo .m-label{
-			display:inline-block; font-size:13px; font-weight:700;
-			color:#c7d6f3; margin:0 0 6px; align-self:flex-start;
-		  }
-		  /* Input Text 內容多行顯示 */
-		  #conv-demo .spec{ white-space:pre-line; text-align:left; }
 		}
 	  </style>
 
-	  <!-- Dry -->
-	  <div class="item dry" style="margin-bottom:10px">
-		<strong>Dry Guitar Riff Sample</strong>
-		<audio id="dry-audio" controls preload="metadata">
-		  <source src="media/dry/guitar_riff_sample.mp3" type="audio/mpeg">
-		</audio>
-	  </div>
-
-	  <!-- Desktop header row -->
-	  <div class="item" style="margin-bottom:6px">
-		<div class="grid-head">
-		  <div>Input Text</div>
-		  <div>Ori IR</div>
-		  <div>Gen IR</div>
-		  <div>Time-domain Waveform &amp; Frequency Response</div>
-		  <div>After IR (Ori)</div>
-		  <div>After IR (Gen)</div>
+		<!-- DRY (置頂) -->
+		<div class="item dry-container" style="margin-bottom:10px">
+		  <strong>Dry Guitar Riff Sample</strong>
+		  <audio id="dry-audio" class="slim" controls preload="metadata">
+			<source src="media/dry/guitar_riff_sample.mp3" type="audio/mpeg">
+		  </audio>
 		</div>
-	  </div>
+		<style>
+		  /* Dry Riff 區塊置中 */
+		  .dry-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;     /* 水平置中 */
+			justify-content: center; /* 垂直置中 */
+			text-align: center;
+		  }
 
-	  <div id="pairs-wrap" class="list" style="gap:10px"></div>
+		  .dry-container audio.slim {
+			width: 60%;   /* 適中，不要太大 */
+			height: 30px; /* 正常高度 */
+		  }
+		</style>
 
-	  <script>
-		/* ===== Data ===== */
-		const pairs = [
-		  { id:"01",
-			text:["Cab: Marshall 1960A (4×12, Closed)","Speaker: Celestion G12M","Mic: MD421","Pos: Cap 0°, distance 0.5 inch"].join("\n"),
-			oriIR:"media/GTR_IR_Examples/[Ori_01]_1960-G12M25-421-Cap-0_5in.wav",
-			genIR:"media/GTR_IR_Examples/[Gen_01]_Marshall 1960A_4x12_Celestion G12M_Sennheiser MD421_Close_Cap degree 0 0 5 inch.wav",
-			plot:"media/plots/Pair01_rect.png"
-		  },
-		  { id:"02",
-			text:["Cab: Marshall 1960A (4×12, Closed)","Speaker: Celestion G12M","Mic: KM84","Pos: ConeEdge, distance 6 inch"].join("\n"),
-			oriIR:"media/GTR_IR_Examples/[Ori_02]_1960-G12M25-KM84-CapEdge-6in.wav",
-			genIR:"media/GTR_IR_Examples/[Gen_02]_Marshall 1960A_4x12_Celestion G12M_KM84_ConeEdge_6in.wav",
-			plot:"media/plots/Pair02_rect.png"
-		  },
-		  { id:"03",
-			text:["Cab: Marshall 1960A (4×12, Closed)","Speaker: Celestion G12M","Mic: R121","Pos: Cap 45°, distance 3 inch"].join("\n"),
-			oriIR:"media/GTR_IR_Examples/[Ori_03]_1960-G12M25-R121-Cap45-3in.wav",
-			genIR:"media/GTR_IR_Examples/[Gen_03]_Marshall 1960A_4x12_Celestion G12M_R121_Cap45_3in.wav",
-			plot:"media/plots/Pair03_rect.png"
-		  },
-		  { id:"04",
-			text:["Cab: Marshall 1960A (4×12, Closed)","Speaker: Celestion G12M","Mic: MD421","Pos: CapEdge, distance 0.5 inch"].join("\n"),
-			oriIR:"media/GTR_IR_Examples/[Ori_04]_1960-G12M25-421-CapEdge-0_5in.wav",
-			genIR:"media/GTR_IR_Examples/[Gen_04]_Marshall 1960A_4x12_Celestion G12M_MD421_CapEdge_0.5in.wav",
-			plot:"media/plots/Pair04_rect.png"
-		  },
-		  { id:"05",
-			text:["Cab: Marshall 1960A (4×12, Closed)","Speaker: Celestion G12M","Mic: MD421","Pos: CapEdge 45°, distance 0.5 inch"].join("\n"),
-			oriIR:"media/GTR_IR_Examples/[Ori_05]_1960-G12M25-421-CapEdge45-0_5in.wav",
-			genIR:"media/GTR_IR_Examples/[Gen_05]_Marshall 1960A_4x12_Celestion G12M_MD421_CapEdge45_0.5in.wav",
-			plot:"media/plots/Pair05_rect.png"
-		  },
-		];
-
-		/* ===== Helpers ===== */
-		function encodePath(path){
-		  const u = new URL(path, location.href);
-		  u.pathname = u.pathname.split('/').map(seg => encodeURIComponent(seg)).join('/');
-		  return u.toString();
-		}
-		function sanitizedBase(path){ return path.split('/').pop().replace(/\s+/g,'_'); }
-		function irCandidates(raw){
-		  if (!/\[Gen_03]_/.test(raw)) return [raw];
-		  const alt = raw.replace("Cap45-3in","Cap45_3in");
-		  return raw === alt ? [raw] : [raw, alt];
-		}
-		function processedCandidates(id, kind, srcPath){
-		  return [
-			`media/processed/Pair${id}_${kind}.wav`,
-			`media/processed/Pair${id}_${kind}__dry_x_${sanitizedBase(srcPath)}`
-		  ];
-		}
-		function setAudioSmart(el, pathOrPaths){
-		  const paths = Array.isArray(pathOrPaths) ? pathOrPaths : [pathOrPaths];
-		  let i = 0;
-		  const tryNext = () => {
-			if(i >= paths.length) return;
-			const raw = paths[i++], enc = encodePath(raw);
-			el.onerror = () => { el.onerror = () => { tryNext(); }; el.src = raw; el.load(); };
-			el.src = enc; el.load();
-		  };
-		  tryNext();
-		}
-		function setImageSmart(img, path){
-		  img.onerror = () => { img.onerror = null; img.src = path; };
-		  img.src = encodePath(path);
-		}
-
-		/* ===== Render rows ===== */
-		const wrap = document.getElementById('pairs-wrap');
-
-		pairs.forEach(p=>{
-		  const row = document.createElement('div');
-		  row.className = 'item';
-		  row.style.padding = '12px';
-		  row.innerHTML = `
-			<div class="pair-grid">
-			  <div class="cell-spec">
-				<span class="m-label">Input Text</span>
-				<div class="spec" style="white-space:pre-line;text-align:left">${p.text}</div>
-			  </div>
-			  <div class="cell-ori">
-				<span class="m-label">Ori IR</span>
-				<audio id="ori_${p.id}" controls preload="metadata"></audio>
-			  </div>
-			  <div class="cell-gen">
-				<span class="m-label">Gen IR</span>
-				<audio id="gen_${p.id}" controls preload="metadata"></audio>
-			  </div>
-			  <div class="cell-plot">
-				<span class="m-label">Time-domain Waveform &amp; Frequency Response</span>
-				<img id="plot_${p.id}" class="plot" alt="Pair ${p.id} Plot">
-			  </div>
-			  <div class="cell-aori">
-				<span class="m-label">After IR (Ori)</span>
-				<audio id="after_ori_${p.id}" controls preload="metadata"></audio>
-			  </div>
-			  <div class="cell-agen">
-				<span class="m-label">After IR (Gen)</span>
-				<audio id="after_gen_${p.id}" controls preload="metadata"></audio>
-			  </div>
+		<!-- 表頭 -->
+		<div class="item" style="margin-bottom:6px">
+			<div class="grid-head">
+				<div class="spec-head">Input Text</div>
+				<div>Ori IR</div>
+				<div>Gen IR</div>
+				<div>Time-domain Waveform &amp; Frequency Response</div>
+				<div>After IR (Ori)</div>
+				<div>After IR (Gen)</div>
 			</div>
-		  `;
-		  wrap.appendChild(row);
+		</div>
 
-		  setAudioSmart(document.getElementById(`ori_${p.id}`), p.oriIR);
-		  setAudioSmart(document.getElementById(`gen_${p.id}`), irCandidates(p.genIR));
-		  setImageSmart(document.getElementById(`plot_${p.id}`), p.plot);
-		  setAudioSmart(document.getElementById(`after_ori_${p.id}`), processedCandidates(p.id, 'Ori', p.oriIR));
-		  setAudioSmart(document.getElementById(`after_gen_${p.id}`), processedCandidates(p.id, 'Gen', p.genIR));
-		});
-	  </script>
+		<!-- 動態填入 5 組 -->
+		<div id="pairs-wrap" class="list" style="gap:10px"></div>
+
+		<script>
+			// 單純避免二次編碼
+			function setAudioExact(el, raw) {
+				el.src = encodeURI(raw);
+				el.load();
+			}
+			function setImageExact(el, raw) {
+				el.src = encodeURI(raw);
+			}
+
+			const pairs = [
+				{
+					id: "01",
+					text: [
+						"Cab: Marshall 1960A (4×12, Closed)",
+						"Speaker: Celestion G12M",
+						"Mic: MD421",
+						"Pos: Cap 0°, distance 0.5 inch"
+					].join("\n"),
+					oriIR: "media/GTR_IR_Examples/[Ori_01]_1960-G12M25-421-Cap-0_5in.wav",
+					genIR: "media/GTR_IR_Examples/[Gen_01]_Marshall 1960A_4x12_Celestion G12M_Sennheiser MD421_Close_Cap degree 0 0 5 inch.wav",
+					afterOri: "media/processed/Pair01_Ori__dry_x_[Ori_01]_1960-G12M25-421-Cap-0_5in.wav",
+					afterGen: "media/processed/Pair01_Gen__dry_x_[Gen_01]_Marshall_1960A_4x12_Celestion_G12M_Sennheiser_MD421_Close_Cap_degree_0_0_5_inch.wav",
+					plot: "media/plots/Pair01_rect.png"
+				},
+				{
+					id: "02",
+					text: [
+						"Cab: Marshall 1960A (4×12, Closed)",
+						"Speaker: Celestion G12M",
+						"Mic: KM84",
+						"Pos: ConeEdge, distance 6 inch"
+					].join("\n"),
+					oriIR: "media/GTR_IR_Examples/[Ori_02]_1960-G12M25-KM84-CapEdge-6in.wav",
+					genIR: "media/GTR_IR_Examples/[Gen_02]_Marshall 1960A_4x12_Celestion G12M_KM84_ConeEdge_6in.wav",
+					afterOri: "media/processed/Pair02_Ori__dry_x_[Ori_02]_1960-G12M25-KM84-CapEdge-6in.wav",
+					afterGen: "media/processed/Pair02_Gen__dry_x_[Gen_02]_Marshall_1960A_4x12_Celestion_G12M_KM84_ConeEdge_6in.wav",
+					plot: "media/plots/Pair02_rect.png"
+				},
+				{
+					id: "03",
+					text: [
+						"Cab: Marshall 1960A (4×12, Closed)",
+						"Speaker: Celestion G12M",
+						"Mic: R121",
+						"Pos: Cap 45°, distance 3 inch"
+					].join("\n"),
+					oriIR: "media/GTR_IR_Examples/[Ori_03]_1960-G12M25-R121-Cap45-3in.wav",
+					genIR: "media/GTR_IR_Examples/[Gen_03]_Marshall 1960A_4x12_Celestion G12M_R121_Cap45_3in.wav",
+					afterOri: "media/processed/Pair03_Ori__dry_x_[Ori_03]_1960-G12M25-R121-Cap45-3in.wav",
+					afterGen: "media/processed/Pair03_Gen__dry_x_[Gen_03]_Marshall_1960A_4x12_Celestion_G12M_R121_Cap45_3in.wav",
+					plot: "media/plots/Pair03_rect.png"
+				},
+				{
+					id: "04",
+					text: [
+						"Cab: Marshall 1960A (4×12, Closed)",
+						"Speaker: Celestion G12M",
+						"Mic: MD421",
+						"Pos: CapEdge, distance 0.5 inch"
+					].join("\n"),
+					oriIR: "media/GTR_IR_Examples/[Ori_04]_1960-G12M25-421-CapEdge-0_5in.wav",
+					genIR: "media/GTR_IR_Examples/[Gen_04]_Marshall 1960A_4x12_Celestion G12M_MD421_CapEdge_0.5in.wav",
+					afterOri: "media/processed/Pair04_Ori__dry_x_[Ori_04]_1960-G12M25-421-CapEdge-0_5in.wav",
+					afterGen: "media/processed/Pair04_Gen__dry_x_[Gen_04]_Marshall_1960A_4x12_Celestion_G12M_MD421_CapEdge_0.5in.wav",
+					plot: "media/plots/Pair04_rect.png"
+				},
+				{
+					id: "05",
+					text: [
+						"Cab: Marshall 1960A (4×12, Closed)",
+						"Speaker: Celestion G12M",
+						"Mic: MD421",
+						"Pos: CapEdge 45°, distance 0.5 inch"
+					].join("\n"),
+					oriIR: "media/GTR_IR_Examples/[Ori_05]_1960-G12M25-421-CapEdge45-0_5in.wav",
+					genIR: "media/GTR_IR_Examples/[Gen_05]_Marshall 1960A_4x12_Celestion G12M_MD421_CapEdge45_0.5in.wav",
+					afterOri: "media/processed/Pair05_Ori__dry_x_[Ori_05]_1960-G12M25-421-CapEdge45-0_5in.wav",
+					afterGen: "media/processed/Pair05_Gen__dry_x_[Gen_05]_Marshall_1960A_4x12_Celestion_G12M_MD421_CapEdge45_0.5in.wav",
+					plot: "media/plots/Pair05_rect.png"
+				}
+			];
+
+			const wrap = document.getElementById('pairs-wrap');
+
+			pairs.forEach(p => {
+				const row = document.createElement('div');
+				row.className = 'item';
+				row.style.padding = '12px';
+				row.innerHTML = `
+					<div class="pair-grid">
+						<div class="spec-cell"><div class="spec">${p.text}</div></div>
+						<div>
+							<audio id="ori_${p.id}" class="slim" controls preload="metadata"></audio>
+						</div>
+						<div>
+							<audio id="gen_${p.id}" class="slim" controls preload="metadata"></audio>
+						</div>
+						<div>
+							<img id="plot_${p.id}" class="plot" alt="Pair ${p.id} Plot">
+						</div>
+						<div>
+							<audio id="after_ori_${p.id}" class="slim" controls preload="metadata"></audio>
+						</div>
+						<div>
+							<audio id="after_gen_${p.id}" class="slim" controls preload="metadata"></audio>
+						</div>
+					</div>
+				`;
+				wrap.appendChild(row);
+
+				setAudioExact(document.getElementById(`ori_${p.id}`), p.oriIR);
+				setAudioExact(document.getElementById(`gen_${p.id}`), p.genIR);
+				setImageExact(document.getElementById(`plot_${p.id}`), p.plot);
+				setAudioExact(document.getElementById(`after_ori_${p.id}`), p.afterOri);
+				setAudioExact(document.getElementById(`after_gen_${p.id}`), p.afterGen);
+			});
+		</script>
+		
 	</section>
-
-
 
 
 
