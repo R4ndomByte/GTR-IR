@@ -191,15 +191,38 @@
 				/* Input Text 內容多行顯示、置左 */
 				#conv-demo .spec { white-space: pre-line; text-align: left; }
 			}
+			/* Dry 區塊置中 */
+			#conv-demo .dry {
+			  display: flex;
+			  flex-direction: column;
+			  align-items: center;   /* 水平置中容器內容 */
+			}
+			#conv-demo .dry audio {
+			  width: min(800px, 90%); /* 大螢幕不會太寬，小螢幕自適應 */
+			  height: 44px;
+			  display: block;
+			  margin: 0 auto;        /* 確保居中 */
+			}
+
+			/* 手機時讓它全寬也保持置中 */
+			@media (max-width: 1000px) {
+			  #conv-demo .dry audio {
+				width: 100%;
+				height: 48px;
+			  }
+			}
+
 		</style>
 
 		<!-- Dry -->
-		<div class="item" style="margin-bottom:10px">
-			<strong>Dry Guitar Riff Sample</strong>
-			<audio id="dry-audio" controls preload="metadata">
-				<source src="media/dry/guitar_riff_sample.mp3" type="audio/mpeg">
-			</audio>
+		<!-- Dry -->
+		<div class="item dry" style="margin-bottom:10px">
+		  <strong>Dry Guitar Riff Sample</strong>
+		  <audio id="dry-audio" controls preload="metadata">
+			<source src="media/dry/guitar_riff_sample.mp3" type="audio/mpeg">
+		  </audio>
 		</div>
+
 
 		<!-- 表頭（只在桌機/寬螢幕顯示） -->
 		<div class="item" style="margin-bottom:6px">
